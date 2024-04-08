@@ -494,11 +494,6 @@ PrefabInstance:
       objectReference: {fileID: 1404661313}
     - target: {fileID: 5297147407084464526, guid: 6bdd287b1739f6443aec1ae7265ee1a7,
         type: 3}
-      propertyPath: viewAngle
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 5297147407084464526, guid: 6bdd287b1739f6443aec1ae7265ee1a7,
-        type: 3}
       propertyPath: patrolPoints.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -1488,8 +1483,8 @@ GameObject:
   - component: {fileID: 1752803148}
   - component: {fileID: 1752803152}
   - component: {fileID: 1752803151}
-  - component: {fileID: 1752803149}
   - component: {fileID: 1752803150}
+  - component: {fileID: 1752803149}
   m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
@@ -1527,8 +1522,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &1752803150
-BoxCollider:
+--- !u!135 &1752803150
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1538,7 +1533,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1752803151
 MeshRenderer:
@@ -1586,7 +1581,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1752803147}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1831069419
 GameObject:
   m_ObjectHideFlags: 0
@@ -1869,21 +1864,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: First Person Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 9047797874484674958, guid: 57c8a9f9389cacb48a76eae15f9086c4,
-        type: 3}
-      propertyPath: gravity
-      value: -30
-      objectReference: {fileID: 0}
-    - target: {fileID: 9047797874484674958, guid: 57c8a9f9389cacb48a76eae15f9086c4,
-        type: 3}
-      propertyPath: jumpHeight
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9047797874484674958, guid: 57c8a9f9389cacb48a76eae15f9086c4,
-        type: 3}
-      propertyPath: ultragravity
-      value: -90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57c8a9f9389cacb48a76eae15f9086c4, type: 3}
