@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
@@ -12,15 +11,12 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 3f;
     public float utrajumpHeight = 13f;
 
-    bool dabljumpchek = false;
     public Transform groundCheck;
     public float groundDictance = 0.4f;
     public LayerMask groundMask;
 
     [Header("Keybinds")]
     public KeyCode ultrajump;
-
-    public float ultragravity;
 
     Vector3 velocity;
 
@@ -34,12 +30,6 @@ public class PlayerMovement : MonoBehaviour
         if(isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
-        }
-
-        if(isGrounded)
-        {
-            gravity = -30;
-            dabljumpchek = false;
         }
 
         float x = Input.GetAxis("Horizontal");
@@ -57,15 +47,8 @@ public class PlayerMovement : MonoBehaviour
 
         else if (Input.GetKey(ultrajump) && isGrounded)
         {
-            dabljumpchek = true;
-            velocity.y = Mathf.Sqrt((jumpHeight + utrajumpHeight) * -2f * gravity);     
+            velocity.y = Mathf.Sqrt((jumpHeight + utrajumpHeight) * -2f * gravity);
         }
-
-        if(Input.GetKeyDown(ultrajump) && dabljumpchek && !isGrounded)
-        {
-            gravity = ultragravity;
-        }
-
 
         velocity.y += gravity * Time.deltaTime;
 
