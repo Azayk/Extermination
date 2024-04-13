@@ -6,10 +6,18 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
 
+    public float cooldownTime = 5f; // Время задержки между двумя нажатиями
+
+    private bool canMove = true;
+
     public float speed = 12f;
-    public float gravity = -9.81f;
+    public float ultraspeed = 60f;
+
+    public float gravity = -30f;
+    public float ultragravity = 300f;
     public float jumpHeight = 3f;
     public float utrajumpHeight = 13f;
+    public float ulta = 300;
 
     public Transform groundCheck;
     public float groundDictance = 0.4f;
@@ -21,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
 
     bool isGrounded;
+
 
     // Update is called once per frame
     void Update()
@@ -39,19 +48,32 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
-        if(Input.GetButtonDown("Jump") && isGrounded)
+        if (isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-
+            gravity = -60;
+            
         }
 
-        else if (Input.GetKey(ultrajump) && isGrounded)
+
+        if (Input.GetButton("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt((jumpHeight + utrajumpHeight) * -2f * gravity);
+        }
+
+        if (Input.GetKey(ultrajump) && isGrounded)
+        {
+            controller.Move(move * ultraspeed * Time.deltaTime);
+        }
+
+        if (Input.GetButtonDown("Jump") && !isGrounded)
+        {
+            gravity = ultragravity;
+
         }
 
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
     }
+
 }
