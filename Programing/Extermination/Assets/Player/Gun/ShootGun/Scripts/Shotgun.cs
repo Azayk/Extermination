@@ -1,30 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class Shotgun : MonoBehaviour
 {
+    public float healAmount = 10;
+
     public Transform spawnPoint;
     public float distance = 15f;
-
+    public PlayerMovement player;
     public float damage = 10f;
-
-    public Transform stvol;
-    public Transform stvol2;
-    public float rotationSpeed = 200;
-
-    public float rotationSpeed2 = 50;
-    public Transform patron;
 
     public GameObject muzzle;
     public GameObject impact;
 
-    private Camera cam;
+    private PlayerHealth _playerHealth;
 
+    private Camera cam;
+    public AudioSource source;
+    public AudioClip clip;
+
+    public AudioSource source2;
+    public AudioClip clip2;
 
     // Start is called before the first frame update
     void Start()
     {
+        InitComponentLinks();
         cam = Camera.main;
     }
 
@@ -32,17 +35,20 @@ public class Shotgun : MonoBehaviour
     void Update()
     {
 
-        stvol.Rotate(Vector3.forward, Time.deltaTime * rotationSpeed);
-        stvol2.Rotate(Vector3.forward, Time.deltaTime * (-rotationSpeed));
-
-
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
-
+            CameraShaker.Instance.ShakeOnce(5f, 2f, .1f, 1f);
+            source.PlayOneShot(clip);
         }
+        
     }
-    
+
+    private void InitComponentLinks()
+    {
+        _playerHealth = player.GetComponent<PlayerHealth>();
+    }
+
     private void Shoot()
     {
         RaycastHit hit;
@@ -53,27 +59,33 @@ public class Shotgun : MonoBehaviour
         GameObject muzzleInstance = Instantiate(muzzle, spawnPoint.position, spawnPoint.localRotation);
         muzzleInstance.transform.parent = spawnPoint;
 
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, distance))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward + new Vector3(-0.2f, 0f, 0f), out hit, distance))
         {
             GameObject impactGO = Instantiate(impact, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(impactGO, 2f);
+            
 
             Target target = hit.transform.GetComponent<Target>();
             if (target != null)
             {
                 target.TakeDamage(damage);
+                AudioPopal();
+                Healht();
             }
         }
 
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward + new Vector3(-2f, 0f, 0f), out hit_1, distance))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward + new Vector3(0.2f, 0f, 0f), out hit_1, distance))
         {
             GameObject impactGO = Instantiate(impact, hit_1.point, Quaternion.LookRotation(hit_1.normal));
             Destroy(impactGO, 2f);
+            
 
             Target target = hit_1.transform.GetComponent<Target>();
             if (target != null)
             {
                 target.TakeDamage(damage);
+                AudioPopal();
+                Healht();
             }
         }
 
@@ -81,11 +93,14 @@ public class Shotgun : MonoBehaviour
         {
             GameObject impactGO = Instantiate(impact, hit_2.point, Quaternion.LookRotation(hit_2.normal));
             Destroy(impactGO, 2f);
+            
 
             Target target = hit_2.transform.GetComponent<Target>();
             if (target != null)
             {
                 target.TakeDamage(damage);
+                AudioPopal();
+                Healht();
             }
 
         }
@@ -94,14 +109,29 @@ public class Shotgun : MonoBehaviour
         {
             GameObject impactGO = Instantiate(impact, hit_3.point, Quaternion.LookRotation(hit_3.normal));
             Destroy(impactGO, 2f);
+            
 
             Target target = hit_3.transform.GetComponent<Target>();
             if (target != null)
             {
                 target.TakeDamage(damage);
+                AudioPopal();
+                Healht();
             }
         }
 
 
     }
+
+    private void Healht()
+    {
+        _playerHealth.AddHealth(healAmount);
+
+    }
+
+    private void AudioPopal()
+    {
+        source2.PlayOneShot(clip2);
+    }
+
 }

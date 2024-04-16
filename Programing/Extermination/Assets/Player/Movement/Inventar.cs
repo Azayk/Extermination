@@ -13,7 +13,8 @@ public class Inventar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gun1.SetActive(true);
+        gun2.SetActive(true);
+        gun1.SetActive(false);
     }
 
     // Update is called once per frame

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //CameraShake();
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDictance, groundMask);
 
         if(isGrounded && velocity.y < 0)
@@ -51,9 +54,9 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             gravity = -60;
-            
-        }
+            CameraShaker.Instance.ShakeOnce(.2f, .1f, .1f, 1f);
 
+        }
 
         if (Input.GetButton("Jump") && isGrounded)
         {
@@ -74,6 +77,16 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    void FixUpdate()
+    {
+        CameraShake();
+    }
+
+    private void CameraShake()
+    {
+        CameraShaker.Instance.ShakeOnce(.2f, 1f, .1f, 1f);
     }
 
 }
