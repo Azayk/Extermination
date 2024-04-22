@@ -836,7 +836,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258682108}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 977.81, y: 1855.02, z: 1300.961}
+  m_LocalPosition: {x: 1004.7169, y: 1859.8173, z: 1329.7885}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2029296452}
@@ -7250,7 +7250,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866107714}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 943.2169, y: 1684.45, z: 1366.6885}
+  m_LocalPosition: {x: 943.2169, y: 1689.5972, z: 1366.6885}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1917560956}
@@ -7459,7 +7459,7 @@ MonoBehaviour:
   targetPoints:
   - {fileID: 168937430}
   - {fileID: 326067026}
-  speed: 50
+  speed: 90
   mode: 1
   colorOfPathInEditor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &921139466
@@ -7486,7 +7486,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921139466}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 487.2, y: 1731.4873, z: 1385}
+  m_LocalPosition: {x: 487.2, y: 1731.4873, z: 1228.2985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1179855472}
@@ -12949,7 +12949,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212726233}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 999.91693, y: 1686.3, z: 1366.6885}
+  m_LocalPosition: {x: 999.91693, y: 1689.5972, z: 1366.6885}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1917560956}
@@ -12985,7 +12985,7 @@ PrefabInstance:
     - target: {fileID: 2157260419092880615, guid: 6bdd287b1739f6443aec1ae7265ee1a7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12197
+      value: 57
       objectReference: {fileID: 0}
     - target: {fileID: 2157260419092880615, guid: 6bdd287b1739f6443aec1ae7265ee1a7,
         type: 3}
@@ -13194,7 +13194,7 @@ MonoBehaviour:
   targetPoints:
   - {fileID: 206833491}
   - {fileID: 1943639399}
-  speed: 50
+  speed: 90
   mode: 1
   colorOfPathInEditor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1456167677 stripped
@@ -13397,7 +13397,7 @@ MonoBehaviour:
   - {fileID: 1339578825}
   - {fileID: 398586086}
   speed: 50
-  mode: 1
+  mode: 0
   colorOfPathInEditor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!64 &1613711429
 MeshCollider:
@@ -14341,7 +14341,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966532218}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1004.7169, y: 1855.87, z: 1346}
+  m_LocalPosition: {x: 1004.7169, y: 1859.8173, z: 1346}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2029296452}
