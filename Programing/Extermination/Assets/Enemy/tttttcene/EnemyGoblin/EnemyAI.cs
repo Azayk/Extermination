@@ -119,8 +119,15 @@ public class EnemyAI : MonoBehaviour
     public void AttackDamage()
     {
         if (!_isPlayerNoticed) return;
-        if (_navMeshAgent.remainingDistance > (_navMeshAgent.stoppingDistance + attackDistance)) return;
 
+        float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+        if (distanceToPlayer > (_navMeshAgent.stoppingDistance + attackDistance))
+        {
+            Debug.Log("Нет урона!");
+            return;
+        }
+
+        Debug.Log("Есть урон!");
         _playerHealth.DealDamage(damage);
     }
 }

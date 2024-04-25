@@ -13,28 +13,32 @@ public class PlayerHealth : MonoBehaviour
         DrawHealthBar();
 
         // Запускаем корутину, которая будет уменьшать значение каждую секунду
-        StartCoroutine(DecreaseHealthOverTime());
+        //StartCoroutine(DecreaseHealthOverTime());
     }
 
     // Корутина для уменьшения значения каждую секунду
     private IEnumerator DecreaseHealthOverTime()
     {
-        // Бесконечный цикл, который будет выполняться, пока объект активен
-        while (true)
+        if (value > 0f)
         {
-            // Уменьшаем значение на 1
-            value -= 1;
-            DrawHealthBar();
-
-            // Проверяем, если значение стало меньше или равно 0, останавливаем корутину
-            if (value <= 0f)
+            // Бесконечный цикл, который будет выполняться, пока объект активен
+            while (true)
             {
-                yield break; // Прерываем выполнение корутины
-            }
+                // Уменьшаем значение на 1
+                value -= 1;
+                DrawHealthBar();
 
-            // Ждем 1 секунду перед следующей итерацией
-            yield return new WaitForSeconds(1f);
+                // Проверяем, если значение стало меньше или равно 0, останавливаем корутину
+                if (value <= 0f)
+                {
+                    yield break; // Прерываем выполнение корутины
+                }
+
+                // Ждем 1 секунду перед следующей итерацией
+                yield return new WaitForSeconds(2f);
+            }
         }
+        
     }
 
     // Метод для отображения полоски здоровья
@@ -46,12 +50,17 @@ public class PlayerHealth : MonoBehaviour
     // Метод для нанесения урона
     public void DealDamage(float damage)
     {
-        value -= damage;
-        if (value <= 0f)
+        if (value > 0f)
         {
-            // Обработка смерти игрока
+            value -= damage;
+            
+            if (value <= 0f)
+            {
+                // Обработка смерти игрока
+            }
+            DrawHealthBar();
         }
-        DrawHealthBar();
+            
     }
 
     // Метод для восстановления здоровья
