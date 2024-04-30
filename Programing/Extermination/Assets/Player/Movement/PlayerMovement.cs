@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDictance = 0.4f;
     public LayerMask groundMask;
+    public LayerMask deadZoneMask;
 
     [Header("Keybinds")]
     public KeyCode ultrajump;
@@ -30,7 +31,8 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
 
     bool isGrounded;
-
+    bool isDeadZone;
+    public PlayerHealth _playerHealth;
 
     // Update is called once per frame
     void Update()
@@ -38,8 +40,9 @@ public class PlayerMovement : MonoBehaviour
         //CameraShake();
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDictance, groundMask);
+        isDeadZone = Physics.CheckSphere(groundCheck.position, groundDictance, deadZoneMask);
 
-        if(isGrounded && velocity.y < 0)
+        if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
@@ -56,6 +59,11 @@ public class PlayerMovement : MonoBehaviour
             gravity = -60;
             CameraShaker.Instance.ShakeOnce(.2f, .1f, .1f, 1f);
 
+        }
+
+        if (isDeadZone)
+        {
+            _playerHealth.PlayerIsDead();
         }
 
         if (Input.GetButton("Jump") && isGrounded)

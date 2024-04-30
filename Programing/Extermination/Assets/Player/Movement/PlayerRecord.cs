@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerRecord : MonoBehaviour
 {
     public Text uiText;
+    public Text uiGameOverText;
     public float value = 0f; 
 
     // Update is called once per frame
@@ -13,5 +14,6 @@ public class PlayerRecord : MonoBehaviour
     {
         string valueText = value.ToString();
         uiText.text = valueText;
+        uiGameOverText.text = valueText;
     }
 }
