@@ -103,6 +103,9 @@ public class PlayerHealth : MonoBehaviour
 
         playMusic.Stop();
         deathMusic.Play();
+
+        // Отключаем компонент MouseLook
+        GetComponent<MouseLook>().enabled = false;
     }
 
     public void ResumeGame()
