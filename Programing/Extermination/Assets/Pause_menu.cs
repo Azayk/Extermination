@@ -58,8 +58,13 @@ public class Pause_menu : MonoBehaviour
 
     public void ResumeGame()
     {
-        TogglePause();
-        if (!isPaused) // Захватываем мышь только если игра не на паузе
+        if (isPaused) // Проверяем, находится ли игра на паузе
+        {
+            TogglePause(); // Если да, то сначала отключаем паузу
+        }
+
+        // Затем, если игра не на паузе, захватываем мышь
+        if (!isPaused)
         {
             LockCursor();
         }
@@ -75,28 +80,45 @@ public class Pause_menu : MonoBehaviour
     {
         isPaused = !isPaused;
 
-        // Устанавливаем время игры в зависимости от того, находится ли игра на паузе
-        Time.timeScale = isPaused ? 0f : originalTimeScale;
-
-        // Включаем или выключаем Canvas меню паузы
-        if (pauseMenuCanvas != null)
-        {
-            pauseMenuCanvas.SetActive(isPaused && SceneManager.GetActiveScene().buildIndex != 0);
-        }
-
-        // Выключаем другой Canvas, если он задан
-        if (canvasToDisable != null)
-        {
-            canvasToDisable.SetActive(!isPaused);
-        }
-
-        // Захватываем/освобождаем мышь в зависимости от состояния паузы
         if (isPaused)
         {
+            // Если входим в режим паузы, сохраняем текущее значение времени и устанавливаем его в 0
+            originalTimeScale = Time.timeScale;
+            Time.timeScale = 0f;
+
+            // Включаем Canvas меню паузы
+            if (pauseMenuCanvas != null)
+            {
+                pauseMenuCanvas.SetActive(true);
+            }
+
+            // Отключаем другой Canvas, если он задан
+            if (canvasToDisable != null)
+            {
+                canvasToDisable.SetActive(false);
+            }
+
+            // Освобождаем мышь
             UnlockCursor();
         }
         else
         {
+            // Если выходим из режима паузы, возвращаем время к исходному значению
+            Time.timeScale = originalTimeScale;
+
+            // Выключаем Canvas меню паузы
+            if (pauseMenuCanvas != null)
+            {
+                pauseMenuCanvas.SetActive(false);
+            }
+
+            // Включаем другой Canvas, если он задан
+            if (canvasToDisable != null)
+            {
+                canvasToDisable.SetActive(true);
+            }
+
+            // Захватываем мышь
             LockCursor();
         }
     }

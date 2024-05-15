@@ -13,6 +13,7 @@ public class MouseLook : MonoBehaviour
     {
         // Заблокировать курсор
         Cursor.lockState = CursorLockMode.Locked;
+        mouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity", mouseSensitivity);
     }
 
     void Update()

@@ -6,11 +6,15 @@ public class PlayerHealth : MonoBehaviour
     public AudioSource deathMusic;
     public AudioSource playMusic;
 
+    public float PIZDA = 6f;
     public float value = 50f;
     public RectTransform valueRectTransform;
     public bool pause = false;
     public GameObject gameplayUI;
     public GameObject gameOverScreen;
+
+    public GameObject gun1;
+    public GameObject gun2;
 
     private float _maxValue;
 
@@ -28,25 +32,22 @@ public class PlayerHealth : MonoBehaviour
     // Корутина для уменьшения значения каждую секунду
     private IEnumerator DecreaseHealthOverTime()
     {
-        
-        // Бесконечный цикл, который будет выполняться, пока объект активен
         while (true)
         {
-            // Уменьшаем значение на 1
-            value -= 1;
+            // Уменьшаем значение
+            value -= PIZDA;
             DrawHealthBar();
 
-            // Проверяем, если значение стало меньше или равно 0, останавливаем корутину
+            // Проверяем, если значение стало меньше или равно 0, вызываем метод PlayerIsDead
             if (value <= 0f)
             {
+                PlayerIsDead();
                 yield break; // Прерываем выполнение корутины
             }
 
-            // Ждем 1 секунду перед следующей итерацией
+            // Ждем 2 секунды перед следующей итерацией
             yield return new WaitForSeconds(2f);
         }
-        
-        
     }
 
     // Метод для отображения полоски здоровья
@@ -61,18 +62,17 @@ public class PlayerHealth : MonoBehaviour
         if (value > 0f)
         {
             value -= damage;
-            
+            Debug.Log("Player health after damage: " + value);
+
             if (value <= 0f)
             {
                 // Обработка смерти игрока
+                Debug.Log("Player died.");
                 PlayerIsDead();
-                
-                
             }
-
-            DrawHealthBar();
         }
-            
+
+        DrawHealthBar();
     }
 
     public void PlayerIsDead()
@@ -84,6 +84,8 @@ public class PlayerHealth : MonoBehaviour
         gameOverScreen.SetActive(true);
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<Inventar>().enabled = false;
+        gun2.SetActive(false);
+        gun1.SetActive(false);
     }
 
     // Метод для восстановления здоровья
@@ -91,7 +93,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (value < 100)
         {
-            value += amount;
+            value += 10;
             value = Mathf.Clamp(value, 0, _maxValue);
             DrawHealthBar();
         }
@@ -103,17 +105,12 @@ public class PlayerHealth : MonoBehaviour
 
         playMusic.Stop();
         deathMusic.Play();
-
-        // Отключаем компонент MouseLook
-        GetComponent<MouseLook>().enabled = false;
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1f;
 
-
-        // Возобновление игровых процессов и управления
         deathMusic.Stop();
         playMusic.Play();
     }
