@@ -16,7 +16,7 @@ public class Inventar : MonoBehaviour
     void Start()
     {
         // Initially activate gun2
-        ActivateGun2();
+        ActivateGun1();
     }
 
     // Update is called once per frame

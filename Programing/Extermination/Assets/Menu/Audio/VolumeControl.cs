@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
@@ -10,7 +8,6 @@ public class VolumeControl : MonoBehaviour
     public AudioMixer mixer;
     public Slider SliderAudio;
 
-    private float _volumeValue;
     private const float _asd = 20f;
 
     private void Awake()
@@ -18,21 +15,30 @@ public class VolumeControl : MonoBehaviour
         SliderAudio.onValueChanged.AddListener(HandleSliderValueChanged);
     }
 
+    private void OnEnable()
+    {
+        float savedVolume = PlayerPrefs.GetFloat(volumeParameter, Mathf.Log10(SliderAudio.value) * _asd);
+        SliderAudio.value = Mathf.Pow(10f, savedVolume / _asd);
+        mixer.SetFloat(volumeParameter, savedVolume);
+
+        ApplyVolumeToAllAudioSources(savedVolume);
+    }
+
     private void HandleSliderValueChanged(float value)
     {
-        _volumeValue = Mathf.Log10(value) * _asd;
-        mixer.SetFloat(volumeParameter, _volumeValue);
+        float volumeValue = Mathf.Log10(value) * _asd;
+        mixer.SetFloat(volumeParameter, volumeValue);
+        PlayerPrefs.SetFloat(volumeParameter, volumeValue);
+
+        ApplyVolumeToAllAudioSources(volumeValue);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void ApplyVolumeToAllAudioSources(float volumeValue)
     {
-        _volumeValue = PlayerPrefs.GetFloat(volumeParameter, Mathf.Log10(SliderAudio.value) * _asd);
-        SliderAudio.value = Mathf.Pow(10f, _volumeValue / _asd);
-    }
-
-    private void OnDisable()
-    {
-        PlayerPrefs.SetFloat(volumeParameter, _volumeValue);
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource audioSource in allAudioSources)
+        {
+            audioSource.volume = Mathf.Clamp01(Mathf.Pow(10f, volumeValue / _asd));
+        }
     }
 }

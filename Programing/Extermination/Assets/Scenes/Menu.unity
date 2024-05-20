@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2643,7 +2643,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -431.30997, y: 323}
+  m_AnchoredPosition: {x: -431.30994, y: 323}
   m_SizeDelta: {x: 423.3811, y: 88.54587}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1176711455
@@ -3509,6 +3509,7 @@ GameObject:
   - component: {fileID: 1464500282}
   - component: {fileID: 1464500281}
   - component: {fileID: 1464500280}
+  - component: {fileID: 1464500283}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3581,6 +3582,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1464500283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464500279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c9d42d7a285f854b826b4b94e786781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeParameter: MasterVolume
+  mixer: {fileID: 24100000, guid: 3b1da3188f537cd4590eb4145ffad069, type: 2}
+  SliderAudio: {fileID: 1988667127}
 --- !u!1 &1485699659
 GameObject:
   m_ObjectHideFlags: 0
@@ -4646,7 +4662,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -431.30997, y: 87}
+  m_AnchoredPosition: {x: -431.30994, y: 87}
   m_SizeDelta: {x: 423.37976, y: 88.5459}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1915165102
@@ -4773,8 +4789,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1988667126}
+  - component: {fileID: 1988667129}
   - component: {fileID: 1988667127}
-  - component: {fileID: 1988667128}
   m_Layer: 5
   m_Name: SliderAudio
   m_TagString: Untagged
@@ -4853,8 +4869,19 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1988667128
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1988667129
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4863,12 +4890,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1988667125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c9d42d7a285f854b826b4b94e786781, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ae7cb4f1f9ed254eb86c5e53a4e504c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeParameter: MasterVol
-  mixer: {fileID: 24100000, guid: 3b1da3188f537cd4590eb4145ffad069, type: 2}
-  SliderAudio: {fileID: 1988667127}
 --- !u!1 &1991059096
 GameObject:
   m_ObjectHideFlags: 0
@@ -5050,7 +5074,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -431.30997, y: 206}
+  m_AnchoredPosition: {x: -431.30994, y: 206}
   m_SizeDelta: {x: 423.37976, y: 91.20651}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2009514415
